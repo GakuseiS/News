@@ -21,9 +21,9 @@ export const Content = ({cards, openModal, setCards}) => {
           setCards(cards.sort((left, right) => right.sort - left.sort))
         } else if(type === 'old') {
           setCards(cards.sort((left, right) => {
-            if(new Date(left.date) < new Date(right.date)) {
+            if(new Date(left.date) > new Date(right.date)) {
               return 1
-            } else if(new Date(left.date) > new Date(right.date)) {
+            } else if(new Date(left.date) < new Date(right.date)) {
               return -1
             } else {
               return 0
@@ -31,9 +31,9 @@ export const Content = ({cards, openModal, setCards}) => {
           }))
         } else {
          setCards(cards.sort((left, right) => {
-            if(new Date(left.date) > new Date(right.date)) {
+            if(new Date(left.date) < new Date(right.date)) {
               return 1
-            } else if(new Date(left.date) < new Date(right.date)) {
+            } else if(new Date(left.date) > new Date(right.date)) {
               return -1
             } else {
               return 0
