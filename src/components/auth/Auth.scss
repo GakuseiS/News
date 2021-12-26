@@ -1,0 +1,148 @@
+.auth {
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    width: 1440px;
+    
+    box-sizing: border-box;
+
+    background-color: white;
+
+    &__right {
+        position: relative;
+        padding: 150px;
+        width: 400px;
+    }
+
+    &__choose {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    &__select:first-of-type {
+        margin-right: 40px;
+    }
+
+    &__select {
+        cursor: pointer;
+        &--active {
+            font-weight: 900;
+        }
+    }
+
+    &__text {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    &__label-normal {
+        position: relative;
+
+        display: block;
+        margin-top: 25px;
+        margin-bottom: 10px;
+
+        color: #9E9E9E;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__input {
+        display: block;
+        width: 400px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        border: 1px #CCCCCC solid;
+
+        color: #282828;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__wrapper {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__label-checkbox {
+        display: flex;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__custom-checkbox {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+
+        border: 1.5px solid #394AE6;
+        border-radius: 3px;
+    }
+
+    &__checkbox:checked + label &__custom-checkbox {
+        background-color: #394AE6;
+        background-image: url('./checked.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &__link {
+        color: #282828;
+
+        &:hover {
+            color: blue
+        }
+    }
+
+    &__remember {
+        margin-top: 30px;
+
+        text-align: center;
+    }
+
+    &__cross {
+        cursor: pointer;
+
+        position: absolute;
+        top: 40px;
+        right: 40px;
+
+        display: block;
+        width: 30px;
+        height: 30px;
+
+        font-size: 40px;
+
+        background-image: url('./close-icon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+    &__show {
+        position: absolute;
+        top: 45px;
+        right: 20px;
+
+        display: block;
+        width: 25px;
+        height: 25px;
+
+        background-image: url('./icon-eye-closed.svg');
+        background-repeat: no-repeat;
+
+        &--active {
+            background-image: url('./icon-eye.svg');
+        }
+    }
+    
+}
