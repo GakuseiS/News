@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Footer } from '../footer/Footer';
-import {Header} from '../header/Header'
-import { Content } from '../content/Content';
-import { Auth } from '../auth/Auth';
+import { Footer } from '../Footer/Footer';
+import {Header} from '../Header/Header'
+import { Content } from '../Content/Content';
+import { Auth } from '../Auth/Auth';
 import { About } from '../About/About';
 import { Modal } from '../Modal/Modal';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.scss'
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 
 
 const App = () => {
