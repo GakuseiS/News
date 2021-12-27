@@ -4,7 +4,7 @@ import './Header.scss'
 import logo from './logo.svg'
 import login from './login.svg'
 
-export const Header = ({setAuthModal}) => {
+export const Header = ({setAuthModal, isAuthenticated}) => {
     return (
         <header className='header'>
             <img className='header__logo' src={logo} alt="Новости" />
@@ -16,7 +16,8 @@ export const Header = ({setAuthModal}) => {
                     <li className='header__item'><NavLink className={({isActive}) => isActive ? 'header__link header__link--active' : 'header__link'} to={'/about'}>О проекте</NavLink></li>
                 </ul>
             </nav>
-            <img className='header__login' src={login} alt="Логин" onClick={() => setAuthModal(true)} />
+            {isAuthenticated && <p className='header__auth'>Вы авторизированы</p>}
+            {!isAuthenticated && <img className='header__login' src={login} alt="Логин" onClick={() => setAuthModal(true)} />}
         </header> 
     )
 }

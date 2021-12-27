@@ -63,7 +63,6 @@
     }
 
     &__wrapper {
-        margin-top: 20px;
         margin-bottom: 20px;
     }
 
@@ -75,7 +74,12 @@
     }
 
     &__checkbox {
-        display: none;
+        position: relative;
+        top: 22px;
+
+        display: inline-block;
+
+        opacity: 0;
     }
 
     &__custom-checkbox {
@@ -143,6 +147,10 @@
         &--active {
             background-image: url('./icon-eye.svg');
         }
+    }
+
+    &__form:not(:valid) &__button {
+        background-color: gray;
     }
     
 }

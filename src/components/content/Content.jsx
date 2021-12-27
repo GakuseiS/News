@@ -2,19 +2,10 @@ import React, {useState} from 'react'
 import { NewsItem } from '../NewsItem/NewsItem'
 import './Content.scss'
 
-export const Content = ({cards, openModal, setCards}) => {
+export const Content = ({cards, openModal, setCards, loading}) => {
 
     const [modal, setModal] = useState(false)
     const [active, setActive] = useState({one: true, two: false, three: false})
-
-    // useEffect(() => {
-    //     fetch('http://dev-exam.l-tech.ru/api/v1/posts', {
-    //         mode: 'cors',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(rs => rs.json()).then(data => console.log(data))
-    // }, [])
 
     const sortCards = ({type}) => {
         if(type === 'pop') {
@@ -41,6 +32,12 @@ export const Content = ({cards, openModal, setCards}) => {
           }))
         }
       }
+
+    if(loading) {
+      return (
+        <p className='content__loading'>Идет загрузка списка новостей...</p>
+      )
+    }
 
     return (
         <main className='content'>
