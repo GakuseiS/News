@@ -1,12 +1,13 @@
 .auth {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 30px;
 
     display: flex;
     width: 1440px;
     
     box-sizing: border-box;
 
+    box-shadow: 5px 3px 8px 8px rgba(34, 60, 80, 0.3);
     background-color: white;
 
     &__right {
