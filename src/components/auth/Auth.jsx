@@ -37,7 +37,7 @@ export const Auth = ({openModal, setAuth}) => {
 
     return (
         <div className='auth'>
-            <img src={bird} alt="Bird" />
+            <img src={bird} className='auth__img' alt="Bird" />
             <div className='auth__right'>
                 <p className='auth__choose'><span className='auth__select auth__select--active'>Войти</span><span className='auth__select'>Зарегистрироваться</span></p>
                 <p className='auth__text'>Введите телефон и пароль для входа в личный кабинет.</p>

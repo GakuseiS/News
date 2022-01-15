@@ -11,6 +11,11 @@
     box-shadow: 5px 3px 8px 8px rgba(34, 60, 80, 0.3);
     background-color: white;
 
+    @media (max-width: 768px) {
+        margin-left: -384px;
+        width: 768px;
+    }
+
     &__title {
         margin-top: 0;
 
@@ -29,6 +34,11 @@
 
     &__img {
         margin: 40px 0;
+
+        @media (max-width: 768px) {
+            width: 600px;
+            height: auto;
+        }
     }
 
     &__text {

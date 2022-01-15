@@ -5,6 +5,10 @@
     background-color: white;
     border-radius: 10px;
 
+    @media (max-width: 768px) {
+        width: 320px;
+    }
+
     &__title {
         margin-top: 0;
         margin-bottom: 10px;
@@ -32,7 +36,15 @@
     }
 
     &__img {
+        width: 364px;
+        height: 260px;
+
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+
+        @media (max-width: 768px) {
+            width: 320px;
+            height: auto;
+        }
     }
 }

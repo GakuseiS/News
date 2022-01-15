@@ -17,7 +17,7 @@ export const NewsItem = ({image, title, text, date, id, openModal}) => {
 
     return (
         <div className='newsItem' onClick={() => {openModal({id, open: true})}}>
-            <img className='newsItem__img' src={'/uploads/post/image/5f0c9c53-4eed-42bc-8293-2c90d72cc78b/thumb_1_image_12.jpg'} width={364} height={260} alt={title} />
+            <img className='newsItem__img' src={'/uploads/post/image/5f0c9c53-4eed-42bc-8293-2c90d72cc78b/thumb_1_image_12.jpg'} alt={title} />
             <div className='newsItem__wrapper'> 
                 <h5 className='newsItem__title'>{title}</h5>
                 <p className='newsItem__text'>{doShortText()}</p>

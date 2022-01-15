@@ -19,8 +19,21 @@ body {
   background-color: #394AE6;
   border: none;
   border-radius: 10px;
+
+ 
 }
 
 .button:hover {
   background-color: #2534B6;
+}
+
+@media (max-width: 768px) {
+  .body {
+    font-size: 14px;
+  }
+
+  .button {
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
