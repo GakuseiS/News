@@ -181,11 +181,14 @@
         background-image: url('./icon-eye-closed.svg');
         background-repeat: no-repeat;
 
-        
-
         &--active {
             background-image: url('./icon-eye.svg');
         }
+
+        @media (max-width: 768px) {
+            top: 40px;
+        }
+
     }
 
     &__form:not(:valid) &__button {
@@ -202,6 +205,18 @@
         @media (max-width: 768px) {
             width: 380px;
             height: auto;
+        }
+    }
+
+    &__error {
+        margin: 10px 0;
+        color: red;
+        font-size: 20px;
+        line-height: 30px;
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+            line-height: 18px;
         }
     }
     

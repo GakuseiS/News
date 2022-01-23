@@ -26,6 +26,12 @@ const App = () => {
     }).then(res => res.json()).then(data => {setCards(data); setLoading(false)})
   }, [])
 
+  // useEffect(() => {
+  //   if(localStorage.getItem('login')) {
+  //     setIsAuthenticated(true)
+  //   }
+  // }, [])
+
     return (
       <Router>
         <div className="App">

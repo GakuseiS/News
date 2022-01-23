@@ -9,6 +9,7 @@ export const Auth = ({openModal, setAuth}) => {
     const [pass, setPass] = useState('')
     const [showPass, setShowPass] = useState(false)
     const [myMask, setMyMask] = useState({phoneMask: ''})
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         fetch('http://dev-exam.l-tech.ru/api/v1/phone_masks', {
@@ -30,8 +31,12 @@ export const Auth = ({openModal, setAuth}) => {
         })
 
         if(rs.status === 200) {
+            localStorage.setItem('login', phone)
+            localStorage.setItem('pass', pass)
             setAuth(true)
             openModal(false)
+        } else {
+            setError(true)
         }        
     }
 
@@ -41,6 +46,7 @@ export const Auth = ({openModal, setAuth}) => {
             <div className='auth__right'>
                 <p className='auth__choose'><span className='auth__select auth__select--active'>Войти</span><span className='auth__select'>Зарегистрироваться</span></p>
                 <p className='auth__text'>Введите телефон и пароль для входа в личный кабинет.</p>
+                {error && <p className='auth__error'>Данные логин и пароль не найдены.</p>}
                 <form className='auth__form' action="/" method='POST' onSubmit={e => doSubmit(e)}>
                     <label className='auth__label-normal' htmlFor="tel">Контактный телефон</label>
                     <InputMask  className='auth__input' id='tel' name='phone' value={phone} placeholder={myMask.phoneMask.replace(/Х/g, '_')} mask={myMask.phoneMask.replace(/Х/g, '9')} onChange={e => { setPhone(e.target.value.replace(/[\s+-]/g, ''))}} required/>
