@@ -1,7 +1,7 @@
 import React from 'react'
 import './Modal.scss'
 
-export const Modal = ({title, text, date, image, openModal}) => {
+export const Modal = ({title, text, date, openModal}) => {
 
     return (
         <div className='modal'>

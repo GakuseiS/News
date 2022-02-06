@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Footer } from '../Footer/Footer';
-import {Header} from '../Header/Header'
 import { Content } from '../Content/Content';
 import { Auth } from '../Auth/Auth';
 import { About } from '../About/About';
+import { Container } from '../container/Container';
 import { Modal } from '../Modal/Modal';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.scss'
@@ -35,12 +34,12 @@ const App = () => {
     return (
       <Router>
         <div className="App">
-              <Header setAuthModal={setAuthModal} isAuthenticated={isAuthenticated}/>
-              <Routes >
-                <Route path='/' element={<Content cards={cards} openModal={setModal} setCards={setCards} loading={loading}/>} />
-                <Route path='/about' element={<About />} />
-              </Routes >
-              <Footer />
+              <Routes>
+                <Route path='/' element={<Container setAuthModal={setAuthModal} isAuthenticated={isAuthenticated}/>}>
+                    <Route path='/' element={<Content cards={cards} openModal={setModal} setCards={setCards} loading={loading}/>} />
+                    <Route path='about' element={<About />} />
+                </Route>
+              </Routes>
               {authModal && <Auth openModal={setAuthModal} setAuth={setIsAuthenticated}/>}
               {modal && cards.map(card => {
                 if(card.id === modal.id) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import './NewsItem.scss'
 
-export const NewsItem = ({image, title, text, date, id, openModal}) => {
+export const NewsItem = ({title, text, date, id, openModal}) => {
 
     const doShortText = () => {
         let newText
