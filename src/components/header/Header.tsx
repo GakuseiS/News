@@ -4,7 +4,12 @@ import './Header.scss'
 import logo from './logo.svg'
 import login from './login.svg'
 
-export const Header = ({setAuthModal, isAuthenticated}) => {
+interface IHeader {
+    setAuthModal: Function;
+    isAuthenticated: boolean;
+}
+
+export const Header:React.FC<IHeader> = ({setAuthModal, isAuthenticated}) => {
     return (
         <header className='header'>
             <img className='header__logo' src={logo} alt="Новости" />

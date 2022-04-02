@@ -1,7 +1,14 @@
 import React from 'react'
 import './Modal.scss'
 
-export const Modal = ({title, text, date, openModal}) => {
+interface IModal {
+    title: string;
+    text: string;
+    date: string;
+    openModal: Function;
+}
+
+export const Modal:React.FC<IModal> = ({title, text, date, openModal}) => {
 
     return (
         <div className='modal'>

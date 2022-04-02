@@ -3,7 +3,12 @@ import { Header } from '../Header/Header'
 import { Footer } from '../Footer/Footer'
 import { Outlet } from 'react-router-dom'
 
-export const Container = ({setAuthModal, isAuthenticated}) => {
+interface IContainer {
+    setAuthModal: Function;
+    isAuthenticated: boolean;
+}
+
+export const Container:React.FC<IContainer> = ({setAuthModal, isAuthenticated}) => {
     return (
         <>
             <Header setAuthModal={setAuthModal} isAuthenticated={isAuthenticated}/>

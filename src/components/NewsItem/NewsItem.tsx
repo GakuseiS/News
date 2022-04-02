@@ -1,10 +1,18 @@
 import React from 'react'
 import './NewsItem.scss'
 
-export const NewsItem = ({title, text, date, id, openModal}) => {
+interface INewsItem {
+    title: string;
+    text: string;
+    date: string;
+    id: number;
+    openModal: Function;
+}
+
+export const NewsItem:React.FC<INewsItem> = ({title, text, date, id, openModal}) => {
 
     const doShortText = () => {
-        let newText
+        let newText = ''
         
         if(text.length > 174) {
             newText = text.substr(0, 174)

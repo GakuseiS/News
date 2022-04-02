@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import InputMask from 'react-input-mask'
-import { useEffect } from 'react/cjs/react.development'
+import React, { useState, useEffect } from 'react'
+import InputMask from "react-input-mask";
 import './Auth.scss'
 import bird from './BigBird.jpg'
 
-export const Auth = ({openModal, setAuth}) => {
+interface IAuth {
+    openModal: Function;
+    setAuth: Function;
+}
+
+export const Auth: React.FC<IAuth> = ({openModal, setAuth}) => {
     const [phone, setPhone] = useState('')
     const [pass, setPass] = useState('')
     const [showPass, setShowPass] = useState(false)
@@ -19,7 +23,7 @@ export const Auth = ({openModal, setAuth}) => {
         }).then(res => res.json()).then(data => setMyMask(data))
     }, [])
 
-    const doSubmit = async (e) => {
+    const doSubmit = async (e: any) => {
         e.preventDefault()
 
         const rs = await fetch('http://dev-exam.l-tech.ru/api/v1/auth', {
@@ -49,8 +53,8 @@ export const Auth = ({openModal, setAuth}) => {
                 {error && <p className='auth__error'>Данные логин и пароль не найдены.</p>}
                 <form className='auth__form' action="/" method='POST' onSubmit={e => doSubmit(e)}>
                     <label className='auth__label-normal' htmlFor="tel">Контактный телефон</label>
-                    <InputMask  className='auth__input' id='tel' name='phone' value={phone} placeholder={myMask.phoneMask.replace(/Х/g, '_')} mask={myMask.phoneMask.replace(/Х/g, '9')} onChange={e => { setPhone(e.target.value.replace(/[\s+-]/g, ''))}} required/>
-                    <label className='auth__label-normal' htmlFor="pass">Пароль <span className='auth__show' onClick={(e) => {e.target.classList.toggle('auth__show--active'); setShowPass(showPass => !showPass)}}></span></label>
+                    <InputMask className='auth__input' id='tel' name='phone' value={phone} placeholder={myMask.phoneMask.replace(/Х/g, '_')} mask={myMask.phoneMask.replace(/Х/g, '9')} onChange={(e: any) => { setPhone(e.target.value.replace(/[\s+-]/g, ''))}} required/>
+                    <label className='auth__label-normal' htmlFor="pass">Пароль <span className='auth__show' onClick={(e: any) => {e.target.classList.toggle('auth__show--active'); setShowPass(showPass => !showPass)}}></span></label>
                     <input className='auth__input' id='pass' type={showPass ? 'text' : 'password'} name='password' value={pass} placeholder='Введите пароль' onChange={e => setPass(e.target.value)} required />
                     <div className='auth__wrapper'>
                         <input className='auth__checkbox' type="checkbox" name="terms" id="terms" required/>

@@ -2,12 +2,19 @@ import React, {useState} from 'react'
 import { NewsItem } from '../NewsItem/NewsItem'
 import './Content.scss'
 
-export const Content = ({cards, openModal, setCards, loading}) => {
+interface IContent {
+  cards: any[];
+  openModal: Function;
+  setCards: Function;
+  loading: boolean;
+}
+
+export const Content:React.FC<IContent> = ({cards, openModal, setCards, loading}) => {
 
     const [modal, setModal] = useState(false)
     const [active, setActive] = useState({one: true, two: false, three: false})
 
-    const sortCards = ({type}) => {
+    const sortCards = ({type}: {type: string}) => {
         if(type === 'pop') {
           setCards(cards.sort((left, right) => right.sort - left.sort))
         } else if(type === 'old') {
@@ -45,7 +52,7 @@ export const Content = ({cards, openModal, setCards, loading}) => {
             <div>
                 <p className='content__sort' onClick={() => setModal(prev => !prev)}>Сортировка <span className='content__arrow' ></span></p>
                 <div className='content__list'>
-                    {cards.map(card => {return <NewsItem key={card.id} id={card.id} image={card.image} title={card.title} text={card.text} date={card.date} openModal={openModal}/>})}
+                    {cards.map(card => {return <NewsItem key={card.id} id={card.id} title={card.title} text={card.text} date={card.date} openModal={openModal}/>})}
                 </div>
             </div>
             {modal && <div className='content__modal'>

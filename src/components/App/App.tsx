@@ -9,12 +9,12 @@ import './App.scss'
 import { useEffect } from 'react';
 
 
-const App = () => {
+const App:React.FC = () => {
   
   const [authModal, setAuthModal] = useState(false)
   const [modal, setModal] = useState({id: '', open: false})
   const [loading, setLoading] = useState(true)
-  const [cards, setCards] = useState([])
+  const [cards, setCards] = useState<any[]>([])
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
@@ -43,17 +43,13 @@ const App = () => {
               {authModal && <Auth openModal={setAuthModal} setAuth={setIsAuthenticated}/>}
               {modal && cards.map(card => {
                 if(card.id === modal.id) {
-                  return <Modal key={card.id} title={card.title} text={card.text} image={card.image} date={card.date} openModal={setModal}/>}
+                  return <Modal key={card.id} title={card.title} text={card.text} date={card.date} openModal={setModal}/>}
                 else {
                   return null
                 }
               })}
         </div>
-        </Router>
+      </Router>
     );
   }
-  
-
-  
-
 export default App;

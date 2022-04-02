@@ -1,9 +1,9 @@
 import React from 'react'
 import './About.scss'
-import blueBird from './blueBird.jpg'
+import blueBird from "src/components/About/blueBird.jpg";
 import brownBird from './brownBird.jpg'
 
-export const About = () => {
+export const About:React.FC = () => {
     return (
         <div className='about'>
             <h1 className='about__title'>О проекте</h1>
