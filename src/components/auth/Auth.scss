@@ -195,6 +195,12 @@
         background-color: gray;
     }
 
+    &__form {
+        &-error {
+            border: 1px solid red;
+        }
+    }
+
     &__button {
         @media (max-width: 768px) {
             width: 250px;

@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import InputMask from "react-input-mask";
+import { Controller, useForm } from 'react-hook-form';
+import { boolean, object, string } from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import './Auth.scss'
-import bird from './BigBird.jpg'
+import bird from 'src/assets/images/BigBird.jpg';
+
 
 interface IAuth {
     openModal: Function;
     setAuth: Function;
 }
 
+const schema = object({
+    phone: string().required(),
+    password: string().required(),
+    terms: boolean().oneOf([true])
+})
+
 export const Auth: React.FC<IAuth> = ({openModal, setAuth}) => {
-    const [phone, setPhone] = useState('')
-    const [pass, setPass] = useState('')
     const [showPass, setShowPass] = useState(false)
     const [myMask, setMyMask] = useState({phoneMask: ''})
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
+    const {register, handleSubmit, control, formState: {errors}} = useForm({
+        mode: 'onBlur',
+        resolver: yupResolver(schema)
+    });
 
     useEffect(() => {
         fetch('http://dev-exam.l-tech.ru/api/v1/phone_masks', {
@@ -23,26 +35,24 @@ export const Auth: React.FC<IAuth> = ({openModal, setAuth}) => {
         }).then(res => res.json()).then(data => setMyMask(data))
     }, [])
 
-    const doSubmit = async (e: any) => {
-        e.preventDefault()
-
+    const doSubmit = async (data: any) => {
         const rs = await fetch('http://dev-exam.l-tech.ru/api/v1/auth', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `phone=${phone}&password=${pass}`
+            body: `phone=${data.phone.replace(/[\s+-]/g, '')}&password=${data.password}`
         })
 
         if(rs.status === 200) {
-            localStorage.setItem('login', phone)
-            localStorage.setItem('pass', pass)
             setAuth(true)
             openModal(false)
         } else {
             setError(true)
         }        
     }
+
+    console.log(errors)
 
     return (
         <div className='auth'>
@@ -51,14 +61,19 @@ export const Auth: React.FC<IAuth> = ({openModal, setAuth}) => {
                 <p className='auth__choose'><span className='auth__select auth__select--active'>Войти</span><span className='auth__select'>Зарегистрироваться</span></p>
                 <p className='auth__text'>Введите телефон и пароль для входа в личный кабинет.</p>
                 {error && <p className='auth__error'>Данные логин и пароль не найдены.</p>}
-                <form className='auth__form' action="/" method='POST' onSubmit={e => doSubmit(e)}>
+                <form className='auth__form' action="/" method='POST' onSubmit={handleSubmit(doSubmit)}>
                     <label className='auth__label-normal' htmlFor="tel">Контактный телефон</label>
-                    <InputMask className='auth__input' id='tel' name='phone' value={phone} placeholder={myMask.phoneMask.replace(/Х/g, '_')} mask={myMask.phoneMask.replace(/Х/g, '9')} onChange={(e: any) => { setPhone(e.target.value.replace(/[\s+-]/g, ''))}} required/>
+                    <Controller 
+                        control={control}
+                        name='phone'
+                        defaultValue={''}
+                        render={({field: { onChange, value }}) => <InputMask className={`auth__input ${!!errors.phone ? 'auth__form-error': ''}`} id='tel' value={value} placeholder={myMask.phoneMask.replace(/Х/g, '_')} mask={myMask.phoneMask.replace(/Х/g, '9')} onChange={onChange} />}
+                    />
                     <label className='auth__label-normal' htmlFor="pass">Пароль <span className='auth__show' onClick={(e: any) => {e.target.classList.toggle('auth__show--active'); setShowPass(showPass => !showPass)}}></span></label>
-                    <input className='auth__input' id='pass' type={showPass ? 'text' : 'password'} name='password' value={pass} placeholder='Введите пароль' onChange={e => setPass(e.target.value)} required />
+                    <input {...register('password')} className={`auth__input ${!!errors.password ? 'auth__form-error': ''}`} id='pass' type={showPass ? 'text' : 'password'} name='password' placeholder='Введите пароль' />
                     <div className='auth__wrapper'>
-                        <input className='auth__checkbox' type="checkbox" name="terms" id="terms" required/>
-                        <label className='auth__label-checkbox' htmlFor="terms"> <span className='auth__custom-checkbox'></span> <div> Я принимаю условия <a className='auth__link' href="/">Пользовательского соглашения</a></div></label>
+                        <input {...register('terms')} className={`auth__checkbox`} type="checkbox" name="terms" id="terms"/>
+                        <label className='auth__label-checkbox' htmlFor="terms"> <span className={`auth__custom-checkbox ${!!errors.terms ? 'auth__form-error': ''}`}></span> <div> Я принимаю условия <a className='auth__link' href="/">Пользовательского соглашения</a></div></label>
                     </div>
                     <button className='button auth__button' type='submit'>Вход</button>
                 </form>

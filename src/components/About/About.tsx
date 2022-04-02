@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.scss'
-import blueBird from "src/components/About/blueBird.jpg";
-import brownBird from './brownBird.jpg'
+import blueBird from "src/assets/images/blueBird.jpg";
+import brownBird from 'src/assets/images/brownBird.jpg'
 
 export const About:React.FC = () => {
     return (
