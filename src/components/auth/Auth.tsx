@@ -52,8 +52,6 @@ export const Auth: React.FC<IAuth> = ({openModal, setAuth}) => {
         }        
     }
 
-    console.log(errors)
-
     return (
         <div className='auth'>
             <img src={bird} className='auth__img' alt="Bird" />
